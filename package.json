@@ -3,9 +3,10 @@
     "displayName": "Octave Language",
     "description": "Octave Language support for Visual Studio Code.",
     "version": "0.0.1",
+    "icon": "images/icon.png",
     "publisher": "leafvmaple",
     "engines": {
-        "vscode": "^1.19.0"
+        "vscode": "^1.17.0"
     },
     "categories": [
         "Languages"
