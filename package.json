@@ -1,0 +1,31 @@
+{
+    "name": "octave",
+    "displayName": "Octave Language",
+    "description": "Octave Language support for Visual Studio Code.",
+    "version": "0.0.1",
+    "publisher": "leafvmaple",
+    "engines": {
+        "vscode": "^1.19.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/leafvmaple/vscode-octave"
+    },
+    "contributes": {
+        "languages": [{
+            "id": "octave",
+            "aliases": ["Octave", "octave"],
+            "extensions": [".m"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "octave",
+            "scopeName": "source.octave",
+            "path": "./syntaxes/octave.tmLanguage.json"
+        }]
+    }
+}
