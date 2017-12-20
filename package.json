@@ -2,7 +2,7 @@
     "name": "octave",
     "displayName": "Octave Language",
     "description": "Octave Language support for Visual Studio Code.",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "icon": "images/icon.png",
     "publisher": "leafvmaple",
     "engines": {
@@ -16,17 +16,96 @@
         "type": "git",
         "url": "https://github.com/leafvmaple/vscode-octave"
     },
+    "activationEvents": [
+        "onCommand:octave.run",
+        "onCommand:octave.stop"
+    ],
+    "main": "./out/extension",
     "contributes": {
-        "languages": [{
-            "id": "octave",
-            "aliases": ["Octave", "octave"],
-            "extensions": [".m"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "octave",
-            "scopeName": "source.octave",
-            "path": "./syntaxes/octave.tmLanguage.json"
-        }]
+        "commands": [
+            {
+                "command": "octave.run",
+                "title": "Octave: Run Code",
+                "icon": "./images/icon.png"
+            },
+            {
+                "command": "octave.stop",
+                "title": "Octave: Stop Running"
+            }
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "when": "resourceLangId == octave && config.octave.showRunIconInEditorTitleMenu",
+                    "command": "octave.run",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "configuration": {
+            "type": "object",
+            "title": "Octave configuration",
+            "properties": {
+                "octave.showRunIconInEditorTitleMenu": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to show 'HDL Run Code' icon in editor title menu.",
+                    "scope": "resource"
+                },
+                "octave.runInTerminal": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to run code in Integrated Terminal.",
+                    "scope": "resource"
+                },
+                "octave.clearPreviousOutput": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether to clear previous output before each run.",
+                    "scope": "resource"
+                },
+                "octave.preserveFocus": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to preserve focus on code editor after code run is triggered.",
+                    "scope": "resource"
+                }
+            }
+        },
+        "languages": [
+            {
+                "id": "octave",
+                "aliases": [
+                    "Octave",
+                    "octave"
+                ],
+                "extensions": [
+                    ".m"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "octave",
+                "scopeName": "source.octave",
+                "path": "./syntaxes/octave.tmLanguage.json"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "dependencies": {
+        "tree-kill": "^1.1.0"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
     }
 }
