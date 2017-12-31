@@ -2,17 +2,16 @@
 import * as vscode from "vscode";
 import { Commands } from "./commands";
 
+const commands = new Commands();
 
 export function activate(context: vscode.ExtensionContext) {
-    
-    const commands = new Commands();
 
     const run = vscode.commands.registerCommand("octave.run", (fileUri: vscode.Uri) => {
-        commands.executeCommand();
+        commands.executeCommand(fileUri);
     });
 
     const stop = vscode.commands.registerCommand("octave.stop", () => {
-        commands.stop();
+        commands.stopCommand();
     });
 
     context.subscriptions.push(run);
@@ -20,4 +19,5 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
+    commands.stopCommand();
 }

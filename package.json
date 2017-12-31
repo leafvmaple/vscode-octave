@@ -2,7 +2,7 @@
     "name": "octave",
     "displayName": "Octave Language",
     "description": "Octave Language support for Visual Studio Code.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "icon": "images/icon.png",
     "publisher": "leafvmaple",
     "engines": {
@@ -26,7 +26,7 @@
             {
                 "command": "octave.run",
                 "title": "Octave: Run Code",
-                "icon": "./images/icon.png"
+                "icon": "images/icon.png"
             },
             {
                 "command": "octave.stop",
@@ -90,6 +90,12 @@
                 "language": "octave",
                 "scopeName": "source.octave",
                 "path": "./syntaxes/octave.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "octave",
+                "path": "./snippets/snippets.json"
             }
         ]
     },
