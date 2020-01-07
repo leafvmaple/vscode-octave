@@ -57,7 +57,7 @@ export class Commands implements vscode.Disposable {
         }
         this.terminal.show(preserveFocus);
         this.terminal.sendText(`cd "${this.cwd}"`);
-        this.terminal.sendText(this.COMMANDS + fileName);
+        this.terminal.sendText(this.COMMANDS + `"${fileName}"`);
     }
 
     public executeCommandInOutputChannel(fileName: string, clearPreviousOutput, preserveFocus): void {
@@ -69,7 +69,7 @@ export class Commands implements vscode.Disposable {
         this.outputChannel.appendLine(`[Running] ${basename(fileName)}`);
         const exec = require("child_process").exec;
         const startTime = new Date();
-        this.process = exec(this.COMMANDS + fileName, { cwd: this.cwd });
+        this.process = exec(this.COMMANDS + `"${fileName}"`, { cwd: this.cwd });
 
         this.process.stdout.on("data", (data) => {
             this.outputChannel.append(data);
