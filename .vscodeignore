@@ -3,3 +3,5 @@
 .gitignore
 tsconfig.json
 tslint.json
+src/
+src/**
