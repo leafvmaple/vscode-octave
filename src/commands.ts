@@ -5,7 +5,7 @@ import * as vscode from "vscode";
 
 export class Commands implements vscode.Disposable {
     private LANGUAGE_NAME  = "Octave";
-    private EXTENTSION_NAME = "octave";
+    private EXTENSION_NAME = "octave";
     private COMMANDS = "octave ";
 
     private outputChannel: vscode.OutputChannel;
@@ -40,7 +40,7 @@ export class Commands implements vscode.Disposable {
         const fileName = basename(this.document.fileName);
         this.cwd = dirname(this.document.fileName);
 
-        this.config = vscode.workspace.getConfiguration(this.EXTENTSION_NAME);
+        this.config = vscode.workspace.getConfiguration(this.EXTENSION_NAME);
         const runInTerminal = this.config.get<boolean>("runInTerminal", true);
         const clearPreviousOutput = this.config.get<boolean>("clearPreviousOutput", true);
         const preserveFocus = this.config.get<boolean>("preserveFocus", true);
